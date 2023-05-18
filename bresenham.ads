@@ -6,12 +6,8 @@ package Bresenham with SPARK_Mode is
    subtype Natural_Width is Natural range 0 .. Screen_Width;
    subtype Natural_Height is Natural range 0 .. Screen_Height;
 
-   type Point is record
-      X : Natural_Width;
-      Y : Natural_Height;
-   end record;
-
    --  Currently support one direction only
-   procedure Draw_Line (Start, Stop : Point)
-   with Pre => Start.X < Stop.X and then Start.Y <= Stop.Y and then (Stop.X - Start.X) >= (Stop.Y - Start.Y);
+   --  Assume we start in (0,0), and DX > DY
+   procedure Draw_Line (X2 : Natural_Width; Y2 : Natural_Height)
+   with Pre => X2 >= Y2;
 end Bresenham;
