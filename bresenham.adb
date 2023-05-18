@@ -26,7 +26,7 @@ package body Bresenham with SPARK_Mode is
       D : Integer := 2 * DY - DX;
       Y : Natural_Height := 0;
    begin
-      for X in 0 .. Y2 loop
+      for X in 0 .. X2 loop
          pragma Loop_Invariant (D = 2 * (X + 1) * DY - (2 * Y + 1) * DX);
          pragma Loop_Invariant (2 * (DY - DX) <= D and then D <= 2 * DY);
    --      Lemma_Closest (X2, Y, X * Y2);
