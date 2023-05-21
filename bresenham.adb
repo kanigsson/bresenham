@@ -24,19 +24,21 @@ package body Bresenham with SPARK_Mode is
       DX : constant Natural_Width := X2 ;
       DY : constant Natural_Height := Y2;
       D : Integer := 2 * DY - DX;
+      X : Natural_Width := 0;
       Y : Natural_Height := 0;
    begin
-      for X in 0 .. X2 loop
+      loop
          pragma Loop_Invariant (D = 2 * (X + 1) * DY - (2 * Y + 1) * DX);
          pragma Loop_Invariant (2 * (DY - DX) <= D and then D <= 2 * DY);
-   --      Lemma_Closest (X2, Y, X * Y2);
-   --      pragma Assert (Best (X2, Y2, X, Y));
-         Plot (X, Y);
+         pragma Loop_Invariant (X <= X2);
+         Plot(X, Y);
+         exit when X = X2;
          if D > 0 then
             Y := Y + 1;
             D := D - 2 * DX;
          end if;
          D := D + 2 * DY;
+         X := X + 1;
       end loop;
    end Draw_Line;
 
