@@ -10,16 +10,6 @@ package body Bresenham with SPARK_Mode is
    function Best (X2, X : Natural_Width; Y2, Y: Natural_Height) return Boolean is
       (for all Y_Alt in 0 .. Y2 => abs (X2 * Y - X * Y2) <= abs (X2 * Y_Alt - X * Y2));
 
-   --  procedure Lemma_Closest (A : Natural_Width; B : Natural_Height; C : Natural) 
-   --  with Pre => C <= Natural_Width'Last * Natural_Height'Last and then Abs (2 * A * B - 2 * C) <= A,
-   --       Post => (for all D in 0 .. Natural_Height'Last => Abs (A * B - C) <= Abs (A * D - C)),
-   --       Ghost, Global => null;
-
-   --  procedure Lemma_Closest (A : Natural_Width; B : Natural_Height; C : Natural) is
-   --  begin
-   --     null;
-   --  end Lemma_Closest;
-
    procedure Draw_Line (X2 : Natural_Width; Y2 : Natural_Height) is
       DX : constant Natural_Width := X2 ;
       DY : constant Natural_Height := Y2;
